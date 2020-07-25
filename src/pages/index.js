@@ -34,6 +34,23 @@ export const query = graphql`
         }
       }
     }
+    mycourses: allContentfulCourses {
+      edges {
+        node {
+          id
+          title
+          price
+          description
+          category
+          createdAt
+          image {
+            fixed(width: 200, height: 120) {
+              src
+            }
+          }
+        }
+      }
+    }
   }
 `
 
