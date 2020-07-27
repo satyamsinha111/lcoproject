@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import HeroSection from "../components/Reusable/HeroSection"
 import Infoblock from "../components/Reusable/Infoblock"
 import Dualinfoblock from "../components/Reusable/Dualinfoblock"
+import CourseCart from "../components/Cart/CourseCart"
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -18,6 +19,7 @@ const IndexPage = ({ data }) => (
       heroclass="hero-background"
     />
     <Infoblock heading="About us" />
+    <CourseCart courses={data.courses} />
     <Dualinfoblock
       heading="Our team"
       image="https://images.pexels.com/photos/1739942/pexels-photo-1739942.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -34,7 +36,7 @@ export const query = graphql`
         }
       }
     }
-    mycourses: allContentfulCourses {
+    courses: allContentfulCourses {
       edges {
         node {
           id
@@ -45,7 +47,7 @@ export const query = graphql`
           createdAt
           image {
             fixed(width: 200, height: 120) {
-              src
+              ...GatsbyContentfulFixed_tracedSVG
             }
           }
         }
